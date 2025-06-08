@@ -45,8 +45,7 @@ public class Calculos {
         // Cálculo de soma
         WebElement numero1 = driver.findElement(AppiumBy.accessibilityId("5"));
         numero1.click();
-        WebElement operacaoSomar = driver.findElement(AppiumBy.accessibilityId("plus"));
-        operacaoSomar.click();
+        somar.clicarBtnSomar();
         WebElement numero2 = driver.findElement(AppiumBy.accessibilityId("5"));
         numero2.click();
         WebElement sinalIgual = driver.findElement(AppiumBy.accessibilityId("equals"));
