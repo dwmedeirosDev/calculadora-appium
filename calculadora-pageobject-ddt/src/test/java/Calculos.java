@@ -13,9 +13,12 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
 
-public class OperacaoSomar {
+import operacoes.Somar;
+
+public class Calculos {
 
     private AndroidDriver driver;
+    private Somar somar;
 
     @BeforeEach
     public void setUp() {
@@ -34,6 +37,7 @@ public class OperacaoSomar {
                 .amend("appium:connectHardwareKeyboard", true);
 
         driver = new AndroidDriver(this.getUrl(), options);
+        somar = new Somar(driver);
     }
 
     @Test
