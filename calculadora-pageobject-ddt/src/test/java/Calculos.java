@@ -6,6 +6,8 @@ import java.net.URL;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.Capabilities;
 
 import commons.Common;
@@ -40,12 +42,9 @@ public class Calculos {
         somar = new Somar(driver);
     }
 
-    @Test
-    public void Somar() {
-
-        int numero1 = 50;
-        int numero2 = 50;
-
+    @ParameterizedTest
+    @CsvFileSource(resources = "csv/numeros.csv", numLinesToSkip = 1, delimiter = ',')
+    public void Somar(int numero1, int numero2) {
         // Cálculo de soma
         common.digito(numero1);
         somar.clicarBtnSomar();
