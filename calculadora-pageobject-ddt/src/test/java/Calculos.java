@@ -7,17 +7,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebElement;
 
-import io.appium.java_client.AppiumBy;
+import commons.Common;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
-
 import operacoes.Somar;
 
 public class Calculos {
 
     private AndroidDriver driver;
+    private Common common;
     private Somar somar;
 
     @BeforeEach
@@ -37,22 +36,25 @@ public class Calculos {
                 .amend("appium:connectHardwareKeyboard", true);
 
         driver = new AndroidDriver(this.getUrl(), options);
+        common = new Common(driver);
         somar = new Somar(driver);
     }
 
     @Test
     public void Somar() {
+
+        int numero1 = 50;
+        int numero2 = 50;
+
         // Cálculo de soma
-        WebElement numero1 = driver.findElement(AppiumBy.accessibilityId("5"));
-        numero1.click();
+        common.digito(numero1);
         somar.clicarBtnSomar();
-        WebElement numero2 = driver.findElement(AppiumBy.accessibilityId("5"));
-        numero2.click();
-        WebElement sinalIgual = driver.findElement(AppiumBy.accessibilityId("equals"));
-        sinalIgual.click();
+        common.digito(numero2);
+        common.clicarBtnIgual();
 
         // Validação da soma
-        assertEquals("10", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
+        String provaRealSoma = String.valueOf(numero1 + numero2);
+        assertEquals(provaRealSoma, common.resultadoDisplay());
     }
 
     @AfterEach
