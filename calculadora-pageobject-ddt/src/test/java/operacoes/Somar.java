@@ -12,6 +12,7 @@ public class Somar {
         this.driver = driver;
     }
 
+    // Clicar no botão somar
     public void clicarBtnSomar(){
         WebElement btnSomar = driver.findElement(AppiumBy.accessibilityId("plus"));
         btnSomar.click();
